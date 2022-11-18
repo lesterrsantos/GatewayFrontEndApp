@@ -1,0 +1,75 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentGateway._id">
+    <h4>Gateway</h4>
+    <div>
+      <label><strong>Serial Number:</strong></label>
+      {{ currentGateway.serialNumber }}
+    </div>
+    <div>
+      <label><strong>Name:</strong></label>
+      {{ currentGateway.humanReadableName }}
+    </div>
+    <div>
+      <label><strong>IP Address:</strong></label>
+      {{ currentGateway.ipv4Address }}
+    </div>
+
+    <a
+      class="badge badge-warning"
+      routerLink="/gateways/{{ currentGateway._id }}"
+    >
+      Edit
+    </a>
+  </div>
+
+  <div *ngIf="!currentGateway">
+    <br />
+    <p>Please click on a Tutorial...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentGateway._id" class="edit-form">
+    <h4>Tutorial</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Gateway Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentGateway.humanReadableName"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">IP</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentGateway.ipv4Address"
+          name="description"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateTutorial()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentGateway._id">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+  </div>
+</ng-template>

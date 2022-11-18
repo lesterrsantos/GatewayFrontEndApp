@@ -1,0 +1,46 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="serialNumber">Serial Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="serialNumber"
+          required
+          [(ngModel)]="tutorial.serialNumber"
+          name="serialNumber"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="humanReadableName">Gateway Name</label>
+        <input
+          class="form-control"
+          id="humanReadableName"
+          required
+          [(ngModel)]="tutorial.humanReadableName"
+          name="humanReadableName"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="ipv4Address">IP</label>
+        <input
+          class="form-control"
+          id="ipv4Address"
+          required
+          [(ngModel)]="tutorial.ipv4Address"
+          name="ipv4Address"
+        />
+      </div>
+
+      <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newTutorial()">Add</button>
+    </div>
+  </div>
+</div>
