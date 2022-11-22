@@ -14,6 +14,26 @@
       {{ currentGateway.ipv4Address }}
     </div>
 
+    <h5 *ngIf="currentGateway.peripheralDevices?.length !== 0">Peripherical Devices</h5>
+    <div *ngFor="let pheripherical of currentGateway.peripheralDevices; let index = index" class="peripherical-contenedor">
+      <div>
+        <label><strong>Peripherical ID:</strong></label>
+        Peripherical {{index}}: {{ pheripherical.uid }}
+      </div>
+      <div>
+        <label><strong>Vendor:</strong></label>
+        {{ pheripherical.vendor }}
+      </div>
+      <div>
+        <label><strong>Created At:</strong></label> 
+        {{ pheripherical.dateCreated }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ pheripherical.status }}
+      </div>
+    </div>
+
     <a
       class="badge badge-warning"
       routerLink="/gateways/{{ currentGateway._id }}"
